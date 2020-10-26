@@ -163,3 +163,7 @@ def _execute_state_machine(state_machine_arn, invocation_payload, region='us-wes
 
 def test_low_cpu_alarm(event, context):
     logger.info(event)
+
+
+def test_concurrency_alarm(event, context):
+    logger.info(event)

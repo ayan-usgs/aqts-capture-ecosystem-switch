@@ -161,6 +161,22 @@ functions:
               alarmName: [ "aqts-capture-ecosystem-switch-TEST-low-cpu-alarm" ]
     vpc: ${self:custom.vpc}
 
+  TestConcurrencyAlarm:
+    handler: src.db_resize_handler.test_concurrency_alarm
+    role: arn:aws:iam::#{AWS::AccountId}:role/csr-Lambda-Role
+    environment:
+      AWS_DEPLOYMENT_REGION: ${self:provider.region}
+      LOG_LEVEL: INFO
+      STAGE: ${self:provider.stage}
+    events:
+      - cloudwatchEvent:
+          event:
+            source:
+              - 'aws.cloudwatch'
+            detail:
+              alarmName: [ "aqts-capture-trigger-PROD-EXTERNAL-concurrency-alarm" ]
+    vpc: ${self:custom.vpc}
+
 
   disableTrigger:
     handler: src.db_resize_handler.disable_trigger
