@@ -83,20 +83,28 @@ def grow_db(event, context):
 
 
 def execute_shrink_machine(event, context):
+    logger.info("event")
     arn = os.environ['SHRINK_STATE_MACHINE_ARN']
+    logger.info(arn)
     payload = {}
     alarm_state = event["detail"]["state"]["value"]
+    logger.info(f"alarm_state={alarm_state}")
     if alarm_state == "ALARM":
+        logger.info("should fire")
         _execute_state_machine(arn, json.dumps(payload))
         return True
     return False
 
 
 def execute_grow_machine(event, context):
+    logger.info("event")
     arn = os.environ['GROW_STATE_MACHINE_ARN']
+    logger.info(arn)
     payload = {}
     alarm_state = event["detail"]["state"]["value"]
+    logger.info(f"alarm state={alarm_state}")
     if alarm_state == "ALARM":
+        logger.info("should fire")
         _execute_state_machine(arn, json.dumps(payload))
         return True
     return False
@@ -151,3 +159,7 @@ def _execute_state_machine(state_machine_arn, invocation_payload, region='us-wes
         input=invocation_payload
     )
     return resp
+
+
+def test_low_cpu_alarm(event, context):
+    logger.info(event)
