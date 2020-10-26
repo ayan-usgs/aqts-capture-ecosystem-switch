@@ -146,7 +146,7 @@ functions:
 
 
   TestLowCpuAlarm:
-    handler: src.handler.test_low_cpu_alarm
+    handler: src.db_resize_handler.test_low_cpu_alarm
     role: arn:aws:iam::#{AWS::AccountId}:role/csr-Lambda-Role
     environment:
       AWS_DEPLOYMENT_REGION: ${self:provider.region}
