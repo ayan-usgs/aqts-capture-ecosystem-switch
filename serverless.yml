@@ -158,7 +158,7 @@ functions:
             source:
               - 'aws.cloudwatch'
             detail:
-              alarmName: ["aqts-capture-ecosystem-switch-${self:provider.stage}-low-cpu-alarm"]
+              alarmName: [ "aqts-capture-ecosystem-switch-TEST-low-cpu-alarm" ]
     vpc: ${self:custom.vpc}
 
 
