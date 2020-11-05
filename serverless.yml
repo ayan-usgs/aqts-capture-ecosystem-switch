@@ -218,6 +218,8 @@ functions:
               alarmName: [ "aqts-capture-ecosystem-switch-${self:provider.stage}-low-cpu-alarm" ]
     vpc: ${self:custom.vpc}
 
+
+
   executeGrow:
     handler: src.db_resize_handler.execute_grow_machine
     role: arn:aws:iam::#{AWS::AccountId}:role/csr-Lambda-Role
